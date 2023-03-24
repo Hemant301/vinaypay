@@ -169,7 +169,7 @@ class _RegistrationState extends State<Registration> {
                 height: 5,
               ),
               Container(
-                height: 1170,
+                height: 1400,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(

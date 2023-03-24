@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vinayakply/maindistributer.dart/distbuterapi.dart';
 import 'package:vinayakply/maindistributer.dart/distributerHome.dart';
 
@@ -32,6 +33,29 @@ class _WarrancycardDetailsState extends State<WarrancycardDetails> {
     } catch (e) {
       print(e);
     }
+  }
+
+  downloadCard(productId, qty, prodPrice) async {
+    try {
+      DistubuterApi distubuterApi = DistubuterApi();
+      List data = await distubuterApi.getSavetoCard(
+          prod_price: prodPrice,
+          qty: qty,
+          product_id: productId,
+          request: "minus/editQty/null");
+      setState(() {
+        // warranty_ditels = data[0];
+      });
+      log("dfgdj$data");
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void _launchphone(String urlphone) async {
+    if (!await launch(
+      urlphone,
+    )) throw 'Could not launch $urlphone';
   }
 
   @override
@@ -101,6 +125,10 @@ class _WarrancycardDetailsState extends State<WarrancycardDetails> {
                                 ],
                               ),
                             ),
+                            // Text(
+                            //   "${warranty_dit['cardlink']}",
+                            //   style: const TextStyle(color: Colors.black),
+                            // ),
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Row(
@@ -214,44 +242,51 @@ class _WarrancycardDetailsState extends State<WarrancycardDetails> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(10)),
-                  height: 40,
-                  width: 60,
-                  child: const Center(
-                    child: Text(
-                      "View",
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                InkWell(
+                  onTap: () {
+                    _launchphone(warranty_dit['cardlink'].toString());
+                    // downloadCard();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(10)),
+                    height: 40,
+                    // width: 60,
+                    child: const Center(
+                      child: Text(
+                        "View & Download",
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(
                   width: 20,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(10)),
-                  height: 40,
-                  width: 100,
-                  child: const Center(
-                    child: Text(
-                      "Download",
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                )
+                // Container(
+                //   decoration: BoxDecoration(
+                //       color: Colors.black,
+                //       borderRadius: BorderRadius.circular(10)),
+                //   height: 40,
+                //   width: 100,
+                //   child: const Center(
+                //     child: Text(
+                //       "Download",
+                //       style: TextStyle(
+                //           fontSize: 14,
+                //           fontWeight: FontWeight.bold,
+                //           color: Colors.white),
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(
+                //   width: 20,
+                // )
               ],
             ),
             const Padding(

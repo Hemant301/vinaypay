@@ -316,12 +316,17 @@ class _OtpvarifyState extends State<Otpvarify> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      const Text(
-                        "Cancel",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: Colors.white),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          "Cancel",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: Colors.white),
+                        ),
                       ),
                     ],
                   ),

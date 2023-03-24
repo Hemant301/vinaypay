@@ -252,6 +252,7 @@ class _FreshLoginState extends State<FreshLogin> {
                                       // }
 
                                       if (data["successCode"] == "1") {
+                                        log(data.toString());
                                         if (data["user_status"] == "0") {
                                           if (data["usertype"] == "0") {
                                             Future.delayed(
@@ -313,6 +314,20 @@ class _FreshLoginState extends State<FreshLogin> {
                                             isShow = true;
                                           });
                                         } else if (data["user_status"] == "2") {
+                                          BlockedUser(context);
+                                          Fluttertoast.showToast(
+                                              msg: " ${data['message']}! ",
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor: Colors.red,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                          setState(() {
+                                            loading = false;
+                                          });
+                                        } else if (data["user_status"] == "0" &&
+                                            data["usertype"] != "0") {
                                           // block dialog
                                           veryFyPopUP(context);
                                           Fluttertoast.showToast(
@@ -536,7 +551,7 @@ veryFyPopUP(context) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () => Navigator.pushNamed(context, "/login2"),
                   child: Container(
                     height: 40,
                     width: 100,
@@ -554,7 +569,94 @@ veryFyPopUP(context) {
                 ),
                 InkWell(
                   onTap: () {
-                    _launchphone('tel:18003091918');
+                    _launchphone('tel:9627200009');
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 150,
+                    color: const Color.fromARGB(255, 53, 22, 189),
+                    child: const Center(
+                      child: Text(
+                        "CALL NOW",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+BlockedUser(context) {
+  void _launchphone(String urlphone) async {
+    if (!await launch(
+      urlphone,
+    )) throw 'Could not launch $urlphone';
+  }
+
+  showDialog(
+    context: context,
+    builder: (_) => AlertDialog(
+      backgroundColor: Colors.white,
+      elevation: 5,
+      insetPadding: const EdgeInsets.all(10),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0))),
+      content: SizedBox(
+        height: 150,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Text(
+              "Account Blocked -",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontSize: 18, color: Colors.red),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Text(
+              "Dear User, Your Account has been blocked . Contact to Vinayak Ply.",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                  color: Colors.grey),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () => Navigator.pushNamed(context, "/login2"),
+                  child: Container(
+                    height: 40,
+                    width: 100,
+                    color: const Color.fromARGB(255, 53, 22, 189),
+                    child: const Center(
+                      child: Text(
+                        "OK",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    _launchphone('tel:96272 00009');
                   },
                   child: Container(
                     height: 40,

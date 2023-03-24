@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:vinayakply/util/blog.dart';
 
+// https://vinayakply.in/API/
 class RegisterApi {
   var client = http.Client();
   // Future<dynamic> getUserType() async {
@@ -25,7 +26,7 @@ class RegisterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-        Uri.parse("https://knowledgeitservices.in/vinayakply/all_usertype.php"),
+        Uri.parse("https://vinayakply.in/API/all_usertype.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -46,7 +47,7 @@ class RegisterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-        Uri.parse("https://knowledgeitservices.in/vinayakply/all_state.php"),
+        Uri.parse("https://vinayakply.in/API/all_state.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -69,7 +70,7 @@ class RegisterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-          Uri.parse("https://knowledgeitservices.in/vinayakply/all_city.php"),
+          Uri.parse("https://vinayakply.in/API/all_city.php"),
           body: {"state_id": state_id});
       if (response.statusCode == 200) {
         print(response.body);
@@ -92,8 +93,7 @@ class RegisterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-          Uri.parse(
-              "https://knowledgeitservices.in/vinayakply/verify-account.php"),
+          Uri.parse("https://vinayakply.in/API/verify-account.php"),
           body: {"UserName": mobile});
       if (response.statusCode == 200) {
         print(response.body);
@@ -114,7 +114,7 @@ class RegisterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-          Uri.parse("https://knowledgeitservices.in/vinayakply/userdetail.php"),
+          Uri.parse("https://vinayakply.in/API/userdetail.php"),
           body: {"userid": userCred.getUserId()});
       if (response.statusCode == 200) {
         print(response.body);
@@ -138,8 +138,7 @@ class RegisterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-          Uri.parse(
-              "https://knowledgeitservices.in/vinayakply/login-account.php"),
+          Uri.parse("https://vinayakply.in/API/login-account.php"),
           body: {"UserName": mobile, "Userpass": password});
       if (response.statusCode == 200) {
         print(response.body);
@@ -175,25 +174,24 @@ class RegisterApi {
   }) async {
     var client = http.Client();
     try {
-      final response = await client.post(
-          Uri.parse("https://knowledgeitservices.in/vinayakply/signup.php"),
-          body: {
-            "usertype": usertype,
-            "name": name,
-            "email": email,
-            "mobile_no": mobile_no,
-            "street_address": street_address,
-            "state_id": state_id,
-            "city_id": city_id,
-            "password": password,
-            "userpic": userpic,
-            "dob": dob,
-            "gender": gender,
-            "anniversary": anniversary,
-            "shopname": shopname,
-            "user_alt_mobile_no": user_alt_mobile_no,
-            "merital_status": merital_status
-          });
+      final response = await client
+          .post(Uri.parse("https://vinayakply.in/API/signup.php"), body: {
+        "usertype": usertype,
+        "name": name,
+        "email": email,
+        "mobile_no": mobile_no,
+        "street_address": street_address,
+        "state_id": state_id,
+        "city_id": city_id,
+        "password": password,
+        "userpic": userpic,
+        "dob": dob,
+        "gender": gender,
+        "anniversary": anniversary,
+        "shopname": shopname,
+        "user_alt_mobile_no": user_alt_mobile_no,
+        "merital_status": merital_status
+      });
       if (response.statusCode == 200) {
         print(response.body);
         return jsonDecode(response.body);

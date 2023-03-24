@@ -11,7 +11,7 @@ class InteriorApi {
     try {
       final response = await client.post(
         body: {"user_id": userCred.getUserId()},
-        Uri.parse("https://knowledgeitservices.in/vinayakply/all_inquiry.php"),
+        Uri.parse("https://vinayakply.in/API/all_inquiry.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -53,7 +53,7 @@ class InteriorApi {
           "cityid": cityid,
           "comment": comment
         },
-        Uri.parse("https://knowledgeitservices.in/vinayakply/inquiry.php"),
+        Uri.parse("https://vinayakply.in/API/inquiry.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -104,8 +104,7 @@ class InteriorApi {
           "city_id": cityid,
           "city_id": merital_status,
         },
-        Uri.parse(
-            "https://knowledgeitservices.in/vinayakply/updateprofile.php"),
+        Uri.parse("https://vinayakply.in/API/updateprofile.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -131,8 +130,7 @@ class InteriorApi {
           "password": newpasword,
           "oldpassword": oldpassword
         },
-        Uri.parse(
-            "https://knowledgeitservices.in/vinayakply/changepassword.php"),
+        Uri.parse("https://vinayakply.in/API/changepassword.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -153,7 +151,7 @@ class InteriorApi {
     var client = http.Client();
     try {
       final response = await client.post(
-        Uri.parse("https://knowledgeitservices.in/vinayakply/projecttype.php"),
+        Uri.parse("https://vinayakply.in/API/projecttype.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -185,7 +183,7 @@ class InteriorApi {
     try {
       final response = await client.post(
         body: {"newpasword": name},
-        Uri.parse("https://knowledgeitservices.in/vinayakply/inquiry.php"),
+        Uri.parse("https://vinayakply.in/API/inquiry.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);

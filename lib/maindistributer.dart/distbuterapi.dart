@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:vinayakply/util/blog.dart';
 
-String mainbaseUrl = "https://knowledgeitservices.in/vinayakply/";
-String imageurl = "https://knowledgeitservices.in/vinayakply/product/";
+String mainbaseUrl = "https://vinayakply.in/API/";
+String imageurl = "https://vinayakply.in/API/product/";
 
 class DistubuterApi {
   var client = http.Client();
@@ -292,7 +292,7 @@ class DistubuterApi {
           "userid": userCred.getUserId(),
           "qrcode": serial_no,
         },
-        //https://knowledgeitservices.in/vinayakply/
+        //https://vinayakply.in/API/
         Uri.parse("${mainbaseUrl}verifywarranty.php"),
       );
       if (response.statusCode == 200) {
@@ -359,7 +359,7 @@ class DistubuterApi {
   //         "cityid": cityid,
   //         "comment": comment
   //       },
-  //       Uri.parse("https://knowledgeitservices.in/vinayakply/inquiry.php"),
+  //       Uri.parse("https://vinayakply.in/API/inquiry.php"),
   //     );
   //     if (response.statusCode == 200) {
   //       print(response.body);
@@ -411,7 +411,7 @@ class DistubuterApi {
   //         "city_id": merital_status,
   //       },
   //       Uri.parse(
-  //           "https://knowledgeitservices.in/vinayakply/updateprofile.php"),
+  //           "https://vinayakply.in/API/updateprofile.php"),
   //     );
   //     if (response.statusCode == 200) {
   //       print(response.body);
@@ -438,7 +438,7 @@ class DistubuterApi {
   //         "oldpassword": oldpassword
   //       },
   //       Uri.parse(
-  //           "https://knowledgeitservices.in/vinayakply/changepassword.php"),
+  //           "https://vinayakply.in/API/changepassword.php"),
   //     );
   //     if (response.statusCode == 200) {
   //       print(response.body);
@@ -459,7 +459,7 @@ class DistubuterApi {
   //   var client = http.Client();
   //   try {
   //     final response = await client.post(
-  //       Uri.parse("https://knowledgeitservices.in/vinayakply/projecttype.php"),
+  //       Uri.parse("https://vinayakply.in/API/projecttype.php"),
   //     );
   //     if (response.statusCode == 200) {
   //       print(response.body);
@@ -491,7 +491,7 @@ class DistubuterApi {
   //   try {
   //     final response = await client.post(
   //       body: {"newpasword": name},
-  //       Uri.parse("https://knowledgeitservices.in/vinayakply/inquiry.php"),
+  //       Uri.parse("https://vinayakply.in/API/inquiry.php"),
   //     );
   //     if (response.statusCode == 200) {
   //       print(response.body);

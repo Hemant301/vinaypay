@@ -58,6 +58,7 @@ class _MyCardPageState extends State<MyCardPage> {
     super.initState();
   }
 
+  TextEditingController qunt = TextEditingController();
   File? profileImage;
   String base64Image = "";
   @override
@@ -270,19 +271,30 @@ class _MyCardPageState extends State<MyCardPage> {
                                                 ),
                                               ),
                                             ),
+                                            // TextField(
+                                            //   decoration: InputDecoration(
+                                            //       hintText: cardList[index]
+                                            //               ['qty']
+                                            //           .toString()),
+                                            // ),
                                             SizedBox(
                                               height: 50,
                                               width: 100,
                                               child: Center(
-                                                child: Text(
-                                                  "${cardList[index]['qty']}",
-                                                  style: const TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.black),
-                                                ),
-                                              ),
+                                                  child: TextField(
+                                                    
+                                                controller: qunt,
+                                              )
+
+                                                  //  Text(
+                                                  //   "${cardList[index]['qty']}",
+                                                  //   style: const TextStyle(
+                                                  //       fontSize: 14,
+                                                  //       fontWeight:
+                                                  //           FontWeight.bold,
+                                                  //       color: Colors.black),
+                                                  // ),
+                                                  ),
                                             ),
                                             InkWell(
                                               onTap: () async {
@@ -446,18 +458,20 @@ class _MyCardPageState extends State<MyCardPage> {
         const SizedBox(
           height: 20,
         ),
-        Container(
-          width: MediaQuery.of(context).size.width - 60,
-          height: 40,
-          decoration: BoxDecoration(
-              color: Colors.black, borderRadius: BorderRadius.circular(5)),
-          child: const Center(
-            child: Text(
-              "Place your Order",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white),
+        InkWell(
+          child: Container(
+            width: MediaQuery.of(context).size.width - 60,
+            height: 40,
+            decoration: BoxDecoration(
+                color: Colors.black, borderRadius: BorderRadius.circular(5)),
+            child: const Center(
+              child: Text(
+                "Place your Order",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.white),
+              ),
             ),
           ),
         ),

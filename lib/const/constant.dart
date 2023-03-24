@@ -1,1 +1,1 @@
-String baseurl = "https://knowledgeitservices.in/vinayakply/";
+String baseurl = "https://vinayakply.in/API/";
