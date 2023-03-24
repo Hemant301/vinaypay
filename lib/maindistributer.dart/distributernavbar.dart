@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:vinayakply/api/bloc/bloc.dart';
+import 'package:vinayakply/api/repo/modal.dart';
 import 'package:vinayakply/maindistributer.dart/productpage.dart';
 
 import '../custom_color.dart';
@@ -66,24 +68,57 @@ class _DistributerNavState extends State<DistributerNav> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    homeBloc.fetchSlider();
+    ;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: _onBack,
         child: SafeArea(
           child: Scaffold(
             appBar: AppBar(
+              actions: [
+                StreamBuilder<CartModal>(
+                    stream: homeBloc.getCartModal.stream,
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) return Container();
+                      return Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Center(
+                          child: Badge(
+                            label:
+                                Text(snapshot.data!.products.length.toString()),
+                            child: Icon(
+                              Icons.shopping_cart,
+                              color: Colors.white,
+                              size: 28,
+                            ),
+                          ),
+                        ),
+                      );
+                    })
+              ],
               leading: Container(),
-              
+
               toolbarHeight: 60, // Set this height
-              flexibleSpace: Container(
+              flexibleSpace: InkWell(
+                onTap: () {
+                  homeBloc.fetchSlider();
+                },
                 child: Container(
-                  color: Custom_colors.skyblue,
-                  height: 60,
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset("assets/logo2.png"),
+                  child: Container(
+                    color: Custom_colors.skyblue,
+                    height: 60,
+                    width: MediaQuery.of(context).size.width,
+                    child: Image.asset("assets/logo2.png"),
+                  ),
                 ),
               ),
-              
             ),
             body: Center(
               child: _widgetOptions.elementAt(widget.selectedIndex ?? 0),

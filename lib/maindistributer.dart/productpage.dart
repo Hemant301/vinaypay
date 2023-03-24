@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:vinayakply/api/bloc/bloc.dart';
 import 'package:vinayakply/maindistributer.dart/distbuterapi.dart';
 
 class ProductPage extends StatefulWidget {
@@ -173,6 +174,7 @@ class _ProductPageState extends State<ProductPage> {
                                                   if (data["success"]
                                                           .toString() ==
                                                       "1") {
+                                                    homeBloc.fetchSlider();
                                                     Navigator.pop(context);
 
                                                     setState(() {
@@ -197,6 +199,7 @@ class _ProductPageState extends State<ProductPage> {
                                                     setState(() {
                                                       loading = false;
                                                     });
+                                                    homeBloc.fetchSlider();
                                                     Fluttertoast.showToast(
                                                         msg:
                                                             " ${data['response']}! ",

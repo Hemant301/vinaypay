@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:vinayakply/const/constant.dart';
 import 'package:vinayakply/util/blog.dart';
 
-// https://vinayakply.in/API/
+// ${baseurl}
 class RegisterApi {
   var client = http.Client();
   // Future<dynamic> getUserType() async {
@@ -26,7 +27,7 @@ class RegisterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-        Uri.parse("https://vinayakply.in/API/all_usertype.php"),
+        Uri.parse("${baseurl}all_usertype.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -47,7 +48,7 @@ class RegisterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-        Uri.parse("https://vinayakply.in/API/all_state.php"),
+        Uri.parse("${baseurl}all_state.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -69,8 +70,7 @@ class RegisterApi {
   }) async {
     var client = http.Client();
     try {
-      final response = await client.post(
-          Uri.parse("https://vinayakply.in/API/all_city.php"),
+      final response = await client.post(Uri.parse("${baseurl}all_city.php"),
           body: {"state_id": state_id});
       if (response.statusCode == 200) {
         print(response.body);
@@ -93,7 +93,7 @@ class RegisterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-          Uri.parse("https://vinayakply.in/API/verify-account.php"),
+          Uri.parse("${baseurl}verify-account.php"),
           body: {"UserName": mobile});
       if (response.statusCode == 200) {
         print(response.body);
@@ -113,8 +113,7 @@ class RegisterApi {
   Future<dynamic> getUserDetails() async {
     var client = http.Client();
     try {
-      final response = await client.post(
-          Uri.parse("https://vinayakply.in/API/userdetail.php"),
+      final response = await client.post(Uri.parse("${baseurl}userdetail.php"),
           body: {"userid": userCred.getUserId()});
       if (response.statusCode == 200) {
         print(response.body);
@@ -138,7 +137,7 @@ class RegisterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-          Uri.parse("https://vinayakply.in/API/login-account.php"),
+          Uri.parse("${baseurl}login-account.php"),
           body: {"UserName": mobile, "Userpass": password});
       if (response.statusCode == 200) {
         print(response.body);
@@ -174,8 +173,25 @@ class RegisterApi {
   }) async {
     var client = http.Client();
     try {
-      final response = await client
-          .post(Uri.parse("https://vinayakply.in/API/signup.php"), body: {
+      print("body ${{
+        "usertype": usertype,
+        "name": name,
+        "email": email,
+        "mobile_no": mobile_no,
+        "street_address": street_address,
+        "state_id": state_id,
+        "city_id": city_id,
+        "password": password,
+        "userpic": userpic,
+        "dob": dob,
+        "gender": gender,
+        "anniversary": anniversary,
+        "shopname": shopname,
+        "user_alt_mobile_no": user_alt_mobile_no,
+        "merital_status": merital_status
+      }}");
+      final response =
+          await client.post(Uri.parse("${baseurl}signup.php"), body: {
         "usertype": usertype,
         "name": name,
         "email": email,

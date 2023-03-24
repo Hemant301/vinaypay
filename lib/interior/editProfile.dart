@@ -321,17 +321,6 @@ class _EditProflieState extends State<EditProflie> {
                             fontSize: 16.0);
 
                         return;
-                      } else if (altMoblieController.text == "") {
-                        Fluttertoast.showToast(
-                            msg: "Invalid alt number !",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-
-                        return;
                       } else if (dobController.text == "") {
                         Fluttertoast.showToast(
                             msg: "Invalid dob !",

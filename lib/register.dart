@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vinayakply/api/registerapi.dart';
 import 'package:vinayakply/custom_color.dart';
 import 'package:vinayakply/routes.dart';
@@ -52,7 +53,7 @@ class _RegistrationState extends State<Registration> {
   bool isChecked = false;
   File? profileImage;
   String base64Image = "";
-
+  String userTypeId = "";
   String maritalstatus = 'Marital Status';
   var items1 = ['Marital Status', 'Married', 'Unmarried'];
   String stateId = "";
@@ -288,6 +289,8 @@ class _RegistrationState extends State<Registration> {
                               onChanged: ((value) {
                                 setState(() {
                                   sslectuserr = value['usertype'].toString();
+                                  userTypeId = value['usertype_id'].toString();
+                                  log(userTypeId);
                                   // log(value['usertype'].toString());
                                 });
                               }),
@@ -706,12 +709,18 @@ class _RegistrationState extends State<Registration> {
                                 },
                               ),
                               const Text('I agree with terms and conditions. '),
-                              const Text(
-                                'Read',
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold),
+                              InkWell(
+                                onTap: () {
+                                  _launchtwitterUrl(
+                                      "https://vinayakply.in/privacy_policy.php");
+                                },
+                                child: const Text(
+                                  'Read',
+                                  style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               )
                             ],
                           ),
@@ -785,7 +794,7 @@ class _RegistrationState extends State<Registration> {
                                       try {
                                         dynamic data =
                                             await Registerapi.signUpApi(
-                                                usertype: sslectuserr,
+                                                usertype: userTypeId,
                                                 name: user_nameController.text,
                                                 email: emailController.text,
                                                 mobile_no:
@@ -855,5 +864,11 @@ class _RegistrationState extends State<Registration> {
             ],
           ),
         ));
+  }
+
+  void _launchtwitterUrl(String twitterUrl) async {
+    if (!await launchUrl(Uri.parse(
+      twitterUrl,
+    ))) throw 'Could not launch $twitterUrl';
   }
 }

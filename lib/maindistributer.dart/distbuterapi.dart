@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:http/http.dart' as http;
+import 'package:vinayakply/const/constant.dart';
 import 'package:vinayakply/util/blog.dart';
 
-String mainbaseUrl = "https://vinayakply.in/API/";
-String imageurl = "https://vinayakply.in/API/product/";
+String mainbaseUrl = "${baseurl}";
+String imageurl = "${baseurl}product/";
 
 class DistubuterApi {
   var client = http.Client();
@@ -13,7 +15,7 @@ class DistubuterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-        body: {"user_sr": "2"},
+        body: {"user_sr": userCred.getUserId()},
         Uri.parse("${mainbaseUrl}all_order.php"),
       );
       if (response.statusCode == 200) {
@@ -145,7 +147,7 @@ class DistubuterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-        body: {"uploadFileImage": doc},
+        body: {"uploadFileImage": doc, "user_id": userCred.getUserId()},
         Uri.parse("${mainbaseUrl}placeorder.php"),
       );
       if (response.statusCode == 200) {
@@ -167,6 +169,13 @@ class DistubuterApi {
       {String? product_id, qty, prod_price, request}) async {
     var client = http.Client();
     try {
+      print("body ${{
+        "user_sr": userCred.getUserId(),
+        "prod_id": product_id,
+        "qty": qty,
+        "prod_price": prod_price,
+        "request": request
+      }}");
       final response = await client.post(
         body: {
           "user_sr": userCred.getUserId(),
@@ -292,7 +301,7 @@ class DistubuterApi {
           "userid": userCred.getUserId(),
           "qrcode": serial_no,
         },
-        //https://vinayakply.in/API/
+        //${baseurl}
         Uri.parse("${mainbaseUrl}verifywarranty.php"),
       );
       if (response.statusCode == 200) {
@@ -359,7 +368,7 @@ class DistubuterApi {
   //         "cityid": cityid,
   //         "comment": comment
   //       },
-  //       Uri.parse("https://vinayakply.in/API/inquiry.php"),
+  //       Uri.parse("${baseurl}inquiry.php"),
   //     );
   //     if (response.statusCode == 200) {
   //       print(response.body);
@@ -411,7 +420,7 @@ class DistubuterApi {
   //         "city_id": merital_status,
   //       },
   //       Uri.parse(
-  //           "https://vinayakply.in/API/updateprofile.php"),
+  //           "${baseurl}updateprofile.php"),
   //     );
   //     if (response.statusCode == 200) {
   //       print(response.body);
@@ -438,7 +447,7 @@ class DistubuterApi {
   //         "oldpassword": oldpassword
   //       },
   //       Uri.parse(
-  //           "https://vinayakply.in/API/changepassword.php"),
+  //           "${baseurl}changepassword.php"),
   //     );
   //     if (response.statusCode == 200) {
   //       print(response.body);
@@ -459,7 +468,7 @@ class DistubuterApi {
   //   var client = http.Client();
   //   try {
   //     final response = await client.post(
-  //       Uri.parse("https://vinayakply.in/API/projecttype.php"),
+  //       Uri.parse("${baseurl}projecttype.php"),
   //     );
   //     if (response.statusCode == 200) {
   //       print(response.body);
@@ -491,7 +500,7 @@ class DistubuterApi {
   //   try {
   //     final response = await client.post(
   //       body: {"newpasword": name},
-  //       Uri.parse("https://vinayakply.in/API/inquiry.php"),
+  //       Uri.parse("${baseurl}inquiry.php"),
   //     );
   //     if (response.statusCode == 200) {
   //       print(response.body);

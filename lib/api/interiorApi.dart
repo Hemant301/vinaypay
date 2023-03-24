@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:vinayakply/const/constant.dart';
 import 'package:vinayakply/util/blog.dart';
 
 class InteriorApi {
@@ -11,7 +12,7 @@ class InteriorApi {
     try {
       final response = await client.post(
         body: {"user_id": userCred.getUserId()},
-        Uri.parse("https://vinayakply.in/API/all_inquiry.php"),
+        Uri.parse("${baseurl}all_inquiry.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -53,7 +54,7 @@ class InteriorApi {
           "cityid": cityid,
           "comment": comment
         },
-        Uri.parse("https://vinayakply.in/API/inquiry.php"),
+        Uri.parse("${baseurl}inquiry.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -104,7 +105,7 @@ class InteriorApi {
           "city_id": cityid,
           "city_id": merital_status,
         },
-        Uri.parse("https://vinayakply.in/API/updateprofile.php"),
+        Uri.parse("${baseurl}updateprofile.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -130,7 +131,7 @@ class InteriorApi {
           "password": newpasword,
           "oldpassword": oldpassword
         },
-        Uri.parse("https://vinayakply.in/API/changepassword.php"),
+        Uri.parse("${baseurl}changepassword.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -151,7 +152,7 @@ class InteriorApi {
     var client = http.Client();
     try {
       final response = await client.post(
-        Uri.parse("https://vinayakply.in/API/projecttype.php"),
+        Uri.parse("${baseurl}projecttype.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
@@ -183,7 +184,7 @@ class InteriorApi {
     try {
       final response = await client.post(
         body: {"newpasword": name},
-        Uri.parse("https://vinayakply.in/API/inquiry.php"),
+        Uri.parse("${baseurl}inquiry.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
