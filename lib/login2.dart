@@ -280,7 +280,7 @@ class _FreshLoginState extends State<FreshLogin> {
                                             });
 
                                             // verify otp
-                                          } else {
+                                          }  else {
                                             // verify dialog
                                             veryFyPopUP(context);
                                             Fluttertoast.showToast(
@@ -681,3 +681,49 @@ BlockedUser(context) {
     ),
   );
 }
+
+
+
+// else if (data["usertype"]
+//                                                   .toString() ==
+//                                               "2") {
+//                                             // customer par jana h
+//                                             Future.delayed(
+//                                                 const Duration(seconds: 0),
+//                                                 () {});
+//                                             Fluttertoast.showToast(
+//                                                 msg: " ${data['message']}! ",
+//                                                 toastLength: Toast.LENGTH_SHORT,
+//                                                 gravity: ToastGravity.BOTTOM,
+//                                                 timeInSecForIosWeb: 1,
+//                                                 backgroundColor: Colors.red,
+//                                                 textColor: Colors.white,
+//                                                 fontSize: 16.0);
+//                                             setState(() {
+//                                               loading = false;
+//                                             });
+
+//                                             // verify otp
+//                                           } else if (data["usertype"]
+//                                                       .toString() ==
+//                                                   "4" ||
+//                                               data["usertype"].toString() ==
+//                                                   "5") {
+//                                             // interor  par jana h
+//                                             Future.delayed(
+//                                                 const Duration(seconds: 0),
+//                                                 () {});
+//                                             Fluttertoast.showToast(
+//                                                 msg: " ${data['message']}! ",
+//                                                 toastLength: Toast.LENGTH_SHORT,
+//                                                 gravity: ToastGravity.BOTTOM,
+//                                                 timeInSecForIosWeb: 1,
+//                                                 backgroundColor: Colors.red,
+//                                                 textColor: Colors.white,
+//                                                 fontSize: 16.0);
+//                                             setState(() {
+//                                               loading = false;
+//                                             });
+
+//                                             // verify otp
+//                                           }
