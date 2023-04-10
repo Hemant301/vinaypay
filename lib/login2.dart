@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:vinayakply/api/registerapi.dart';
 import 'package:vinayakply/routes.dart';
 import 'package:vinayakply/util/blog.dart';
+import 'package:vinayakply/util/forget.dart';
 
 Map userData = {};
 
@@ -33,7 +34,7 @@ class _FreshLoginState extends State<FreshLogin> {
           ),
           InkWell(
             onTap: () {
-              veryFyPopUP(context);
+              // veryFyPopUP(context);
             },
             child: Padding(
               padding: const EdgeInsets.all(32.0),
@@ -89,6 +90,30 @@ class _FreshLoginState extends State<FreshLogin> {
                     }
                     return null;
                   },
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ForgetPssword()),
+                          );
+                        },
+                        child: const Text(
+                          "Forgot Password",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 3, 107, 128),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 if (isShow != true)
                   Column(
@@ -280,7 +305,7 @@ class _FreshLoginState extends State<FreshLogin> {
                                             });
 
                                             // verify otp
-                                          }  else {
+                                          } else {
                                             // verify dialog
                                             veryFyPopUP(context);
                                             Fluttertoast.showToast(
@@ -433,7 +458,7 @@ class _FreshLoginState extends State<FreshLogin> {
                                       setState(() {
                                         // accData = accData;
                                       });
-                                      print(data["success"].runtimeType);
+                                      log(data.toString());
 
                                       if (data["success"].toString() == "1") {
                                         userCred.addUserId(
@@ -444,10 +469,45 @@ class _FreshLoginState extends State<FreshLogin> {
                                             .addName(data["name"].toString());
                                         userCred.addEmail(
                                             data["email_id"].toString());
+                                        userCred.addUserType(
+                                            data["usertype_id"].toString());
                                         setState(() {
                                           userData = accData;
                                           loading1 = false;
                                         });
+
+                                        if (data["usertype_id"].toString() ==
+                                            "2") {
+                                          Future.delayed(
+                                              const Duration(seconds: 0), () {
+                                            Navigator.pushReplacementNamed(
+                                                context,
+                                                My_Routes.dealerhomepage);
+                                          });
+
+                                          // Navigator.pushReplacementNamed(context, My_Routes.distributernavbar);
+                                          // Navigator.pushReplacementNamed(context, My_Routes.interiorNav);
+                                        } else if (data["usertype_id"]
+                                                    .toString() ==
+                                                "4" ||
+                                            data["usertype_id"].toString() ==
+                                                "5") {
+                                          Future.delayed(
+                                              const Duration(seconds: 0), () {
+                                            Navigator.pushReplacementNamed(
+                                                context, My_Routes.interiorNav);
+                                          });
+                                        } else if (data["usertype_id"]
+                                                .toString() ==
+                                            "3") {
+                                          Future.delayed(
+                                              const Duration(seconds: 0), () {
+                                            Navigator.pushReplacementNamed(
+                                                context,
+                                                My_Routes.distributernavbar);
+                                          });
+                                        }
+
                                         Fluttertoast.showToast(
                                             msg: " ${data['message']}! ",
                                             toastLength: Toast.LENGTH_SHORT,
@@ -457,17 +517,17 @@ class _FreshLoginState extends State<FreshLogin> {
                                             textColor: Colors.white,
                                             fontSize: 16.0);
 
-                                        Future.delayed(
-                                            const Duration(seconds: 0), () {
-                                          // Navigator.pushNamed(
-                                          //   context,
-                                          //   My_Routes.interiorNav,
-                                          // );
-                                          Navigator.pushNamed(context,
-                                              My_Routes.distributernavbar
-                                              // My_Routes.dealerhomepage,
-                                              );
-                                        });
+                                        // Future.delayed(
+                                        //     const Duration(seconds: 0), () {
+                                        //   // Navigator.pushNamed(
+                                        //   //   context,
+                                        //   //   My_Routes.interiorNav,
+                                        //   // );
+                                        //   Navigator.pushNamed(context,
+                                        //       My_Routes.distributernavbar
+                                        //       // My_Routes.dealerhomepage,
+                                        //       );
+                                        // });
                                       } else {
                                         setState(() {
                                           loading1 = false;

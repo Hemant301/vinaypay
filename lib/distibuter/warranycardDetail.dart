@@ -195,6 +195,7 @@ class _WarranyCardDetailsState extends State<WarranyCardDetails> {
 
                                 if (data["status"].toString() == "1") {
                                   setState(() {
+                                    getwarantyDetail();
                                     loading = false;
                                   });
                                   Fluttertoast.showToast(
@@ -459,7 +460,7 @@ class _WarranyCardDetailsState extends State<WarranyCardDetails> {
                         print(data["status"].runtimeType);
 
                         if (data["success"].toString() == "1") {
-                          Navigator.pop(context);
+                          Navigator.pushNamed(context, "/");
                           //  userCred.addUserId(data["user"]["_id"]);
                           setState(() {
                             loading = false;

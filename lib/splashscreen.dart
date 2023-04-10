@@ -17,8 +17,18 @@ class _SplashscreenState extends State<Splashscreen> {
     super.initState();
     Timer(const Duration(seconds: 2), () {
       if (userCred.isUserLogin()) {
+        if (userCred.getUserType() == '2') {
+          Navigator.pushReplacementNamed(context, My_Routes.dealerhomepage);
+        } else if (userCred.getUserType() == '3') {
+          Navigator.pushReplacementNamed(context, My_Routes.distributernavbar);
+        } else if (userCred.getUserType() == '4' ||
+            userCred.getUserType() == '5') {
+          Navigator.pushReplacementNamed(context, My_Routes.interiorNav);
+        }
+
         // Navigator.pushReplacementNamed(context, My_Routes.dealerhomepage);
-        Navigator.pushReplacementNamed(context, My_Routes.distributernavbar);
+        // Navigator.pushReplacementNamed(context, My_Routes.distributernavbar);
+        // Navigator.pushReplacementNamed(context, My_Routes.interiorNav);
       } else {
         Navigator.pushReplacementNamed(context, My_Routes.login2);
       }

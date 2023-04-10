@@ -61,6 +61,11 @@ class UserCred {
     return isActive;
   }
 
+  String getUserType() {
+    String isActive = StorageUtil.getString('USERTYPE');
+    return isActive;
+  }
+
   bool getPincodeAvail() {
     String isActive = StorageUtil.getString('AVAIL');
     return isActive == 'true' ? true : false;
@@ -68,6 +73,10 @@ class UserCred {
 
   void addUserId(String id) {
     StorageUtil.putString('USERID', id);
+  }
+
+  void addUserType(String id) {
+    StorageUtil.putString('USERTYPE', id);
   }
 
   void addUsername(String name) {
@@ -121,6 +130,7 @@ class UserCred {
 
   void logoutUser() {
     StorageUtil.putString('USERID', '');
+    StorageUtil.putString('USERTYPE', '');
     StorageUtil.putString('PINCODE', '');
     StorageUtil.putString('LAT', '');
     StorageUtil.putString('LNG', '');

@@ -65,6 +65,26 @@ class RegisterApi {
     }
   }
 
+  Future<dynamic> rewordPoints() async {
+    var client = http.Client();
+    try {
+      final response = await client
+          .post(Uri.parse("${baseurl}reward.php"), body: {"userid": "35"});
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+        throw "Somethiing went wrong";
+      }
+    } catch (e) {
+      print(e);
+      throw "Somethiing went wrong";
+    } finally {
+      client.close();
+    }
+  }
+
   Future<dynamic> getCityList({
     String state_id = "",
   }) async {
@@ -139,6 +159,29 @@ class RegisterApi {
       final response = await client.post(
           Uri.parse("${baseurl}login-account.php"),
           body: {"UserName": mobile, "Userpass": password});
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+        throw "Somethiing went wrong";
+      }
+    } catch (e) {
+      print(e);
+      throw "Somethiing went wrong";
+    } finally {
+      client.close();
+    }
+  }
+
+  Future<dynamic> forgetApi({
+    required String mobile,
+  }) async {
+    var client = http.Client();
+    try {
+      final response = await client.post(
+          Uri.parse("${baseurl}forgotpassword.php"),
+          body: {"UserName": mobile});
       if (response.statusCode == 200) {
         print(response.body);
         return jsonDecode(response.body);

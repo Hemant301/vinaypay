@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vinayakply/routes.dart';
+import 'package:vinayakply/util/blog.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -51,7 +52,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 setState(() {
                   // widgetForBody = productBody();
                 });
-                //Navigator.pushNamed(context, My_Routes.viewcartRoute);
+
+                Navigator.pushNamed(context, My_Routes.dealerRewards);
               },
             ),
             const Divider(
@@ -78,6 +80,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
               title: const Text('LogOut'),
               onTap: () {
                 Navigator.pop(context);
+
+                userCred.logoutUser();
+
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  My_Routes.login2,
+                  ModalRoute.withName(My_Routes.splashRoute),
+                );
               },
             ),
             const Divider(

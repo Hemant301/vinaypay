@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:vinayakply/distibuter/earnpoin.dart';
-import 'package:vinayakply/untitled%20folder/scanQr.dart';
+
+import '../maindistributer.dart/distbuterapi.dart';
+import '../maindistributer.dart/qrclint.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -11,6 +15,29 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  List pointlist = [];
+  getProductList() async {
+    try {
+      DistubuterApi distubuterApi = DistubuterApi();
+      List data = await distubuterApi.getSlider();
+
+      setState(() {
+        pointlist = data;
+      });
+
+      log("dfgdj$pointlist");
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    getProductList();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,39 +48,20 @@ class _DashboardState extends State<Dashboard> {
               height: 16,
             ),
             ImageSlideshow(
-              width: double.infinity,
-              height: 200,
-              initialPage: 2,
-              indicatorColor: Colors.deepOrange,
-              indicatorBackgroundColor: Colors.blue,
-              onPageChanged: (value) {
-                print('Page changed: $value');
-              },
-              autoPlayInterval: 2000,
-              isLoop: true,
-              children: [
-                Image.asset(
-                  'assets/ply.png',
-                  fit: BoxFit.cover,
-                ),
-                Image.asset(
-                  'assets/ply1.png',
-                  fit: BoxFit.cover,
-                ),
-                Image.asset(
-                  'assets/ply2.png',
-                  fit: BoxFit.cover,
-                ),
-                Image.asset(
-                  'assets/ply3.png',
-                  fit: BoxFit.cover,
-                ),
-                Image.asset(
-                  'assets/ply1.png',
-                  fit: BoxFit.cover,
-                ),
-              ],
-            ),
+                width: double.infinity,
+                height: 200,
+                initialPage: 2,
+                indicatorColor: Colors.deepOrange,
+                indicatorBackgroundColor: Colors.blue,
+                onPageChanged: (value) {
+                  print('Page changed: $value');
+                },
+                autoPlayInterval: 2000,
+                isLoop: true,
+                children: List.generate(
+                    pointlist.length,
+                    (index) => Image.network(
+                        "https://vinayakply.in/API/member/light/slider/${pointlist[index]['image']}"))),
             const SizedBox(
               height: 16,
             ),
@@ -75,10 +83,10 @@ class _DashboardState extends State<Dashboard> {
                         borderRadius: BorderRadius.circular(12.0)),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Qr(
+                          builder: (context) => const QrClint(
                               // data: result.code,
                               )),
                     );
@@ -102,7 +110,7 @@ class _DashboardState extends State<Dashboard> {
                   shape: const RoundedRectangleBorder(),
                 ),
                 onPressed: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const EarnPoint()),
                   );

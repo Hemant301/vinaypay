@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -20,6 +21,302 @@ class InteriorProfile extends StatefulWidget {
 class _InteriorProfileState extends State<InteriorProfile> {
   File? profileImage;
   String base64Image = "";
+
+  fun() {
+    log(userCred.getUserType());
+    if (userCred.getUserType() == "2") {
+      return Text(
+        "Customer No:${userCred.getUserId()}",
+        style: const TextStyle(
+            fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+      );
+    } else if (userCred.getUserType() == "4" || userCred.getUserType() == "5") {
+      return Text(
+        "Interior No:${userCred.getUserId()}",
+        style: const TextStyle(
+            fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+      );
+    } else if (userCred.getUserType() == "3") {
+      return Text(
+        "Distributor No:${userCred.getUserId()}",
+        style: const TextStyle(
+            fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+      );
+    }
+  }
+
+  // List profileData = [];
+
+  // getUserDetail() async {
+  //   try {
+  //     RegisterApi registerApi = RegisterApi();
+  //     List data = await registerApi.getUserDetails();
+  //     setState(() {
+  //       profileData = data;
+  //       log(data.toString());
+  //     });
+
+  //     log("dfgdj$data");
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
+  fun2() {
+    log(userCred.getUserType());
+    if (userCred.getUserType() == "2") {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Text(
+                    "Personalization",
+                    style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: (() {
+                      Navigator.pushNamed(context, My_Routes.dealerScheme);
+                    }),
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          border:
+                              Border.all(width: 1, color: Colors.grey.shade400),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(1.0, 6.0),
+                              blurRadius: 10.0,
+                            ),
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                "Schemes",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Icon(Icons.arrow_forward_ios)
+                            ]),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        border:
+                            Border.all(width: 1, color: Colors.grey.shade400),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: const <BoxShadow>[
+                          BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(1.0, 6.0),
+                            blurRadius: 10.0,
+                          ),
+                        ]),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, My_Routes.dealerRewards);
+                        },
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                "Rewords",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Icon(Icons.arrow_forward_ios)
+                            ]),
+                      ),
+                    ),
+                  ),
+                ),
+              ]),
+        ),
+      );
+    } else if (userCred.getUserType() == "3") {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Text(
+                    "Personalization",
+                    style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Qr()),
+                      );
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          border:
+                              Border.all(width: 1, color: Colors.grey.shade400),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(1.0, 6.0),
+                              blurRadius: 10.0,
+                            ),
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                "Generate Warrant Card",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Icon(Icons.arrow_forward_ios)
+                            ]),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: (() {
+                      Navigator.pushNamed(context, My_Routes.warranypage);
+                    }),
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          border:
+                              Border.all(width: 1, color: Colors.grey.shade400),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(1.0, 6.0),
+                              blurRadius: 10.0,
+                            ),
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                "Warranty Cards",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Icon(Icons.arrow_forward_ios)
+                            ]),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        border:
+                            Border.all(width: 1, color: Colors.grey.shade400),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: const <BoxShadow>[
+                          BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(1.0, 6.0),
+                            blurRadius: 10.0,
+                          ),
+                        ]),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DistributerNav(
+                                      selectedIndex: 2,
+                                    )),
+                          );
+                        },
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                "Orders",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Icon(Icons.arrow_forward_ios)
+                            ]),
+                      ),
+                    ),
+                  ),
+                ),
+              ]),
+        ),
+      );
+    } else if (userCred.getUserType() == "4" || userCred.getUserType() == "5") {
+      return Container();
+    }
+  }
+
+  @override
+  void initState() {
+    // getUserDetail();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -151,15 +448,7 @@ class _InteriorProfileState extends State<InteriorProfile> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Dealership No:${userCred.getUserId()}",
-                        style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      ),
-                    ],
+                    children: [fun()],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -173,34 +462,34 @@ class _InteriorProfileState extends State<InteriorProfile> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        child: Text(
                           userCred.getEmail(),
+                          maxLines: 3,
                           style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.black),
                         ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      Text(
-                        "Delete Account",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red),
                       ),
-                      Icon(Icons.delete, color: Colors.red)
                     ],
                   ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.end,
+                  //   children: const [
+                  //     Text(
+                  //       "Delete Account",
+                  //       style: TextStyle(
+                  //           fontSize: 18,
+                  //           fontWeight: FontWeight.bold,
+                  //           color: Colors.red),
+                  //     ),
+                  //     Icon(Icons.delete, color: Colors.red)
+                  //   ],
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -230,154 +519,266 @@ class _InteriorProfileState extends State<InteriorProfile> {
             const Divider(
               thickness: 5,
             ),
+            fun2(),
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Text(
-                          "Personalization",
-                          style: TextStyle(
-                              fontSize: 23,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Qr()),
-                            );
-                          },
-                          child: Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1, color: Colors.grey.shade400),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                                boxShadow: const <BoxShadow>[
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    offset: Offset(1.0, 6.0),
-                                    blurRadius: 10.0,
-                                  ),
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Generate Warrant Card",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black),
-                                    ),
-                                    Icon(Icons.arrow_forward_ios)
-                                  ]),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: (() {
-                            Navigator.pushNamed(context, My_Routes.warranypage);
-                          }),
-                          child: Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1, color: Colors.grey.shade400),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                                boxShadow: const <BoxShadow>[
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    offset: Offset(1.0, 6.0),
-                                    blurRadius: 10.0,
-                                  ),
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Warranty Cards",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black),
-                                    ),
-                                    Icon(Icons.arrow_forward_ios)
-                                  ]),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1, color: Colors.grey.shade400),
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              boxShadow: const <BoxShadow>[
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  offset: Offset(1.0, 6.0),
-                                  blurRadius: 10.0,
-                                ),
-                              ]),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DistributerNav(
-                                            selectedIndex: 2,
-                                          )),
-                                );
-                              },
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Orders",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black),
-                                    ),
-                                    Icon(Icons.arrow_forward_ios)
-                                  ]),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]),
-              ),
-            ),
+            // if (userCred.getUserType() == "4" || userCred.getUserType() == "5")
+            //   userCred.getUserType() != "4" ||
+            //           userCred.getUserType() != "5" ||
+            //           userCred.getUserType() != "1"
+            //       ? Padding(
+            //           padding: const EdgeInsets.all(8.0),
+            //           child: Card(
+            //             child: Column(
+            //                 mainAxisAlignment: MainAxisAlignment.start,
+            //                 crossAxisAlignment: CrossAxisAlignment.start,
+            //                 children: [
+            //                   const Padding(
+            //                     padding: EdgeInsets.all(15.0),
+            //                     child: Text(
+            //                       "Personalization",
+            //                       style: TextStyle(
+            //                           fontSize: 23,
+            //                           fontWeight: FontWeight.bold,
+            //                           color: Colors.black),
+            //                     ),
+            //                   ),
+            //                   Padding(
+            //                     padding: const EdgeInsets.all(8.0),
+            //                     child: InkWell(
+            //                       onTap: (() {
+            //                         Navigator.pushNamed(
+            //                             context, My_Routes.dealerScheme);
+            //                       }),
+            //                       child: Container(
+            //                         height: 50,
+            //                         decoration: BoxDecoration(
+            //                             border: Border.all(
+            //                                 width: 1,
+            //                                 color: Colors.grey.shade400),
+            //                             borderRadius: BorderRadius.circular(10),
+            //                             color: Colors.white,
+            //                             boxShadow: const <BoxShadow>[
+            //                               BoxShadow(
+            //                                 color: Colors.grey,
+            //                                 offset: Offset(1.0, 6.0),
+            //                                 blurRadius: 10.0,
+            //                               ),
+            //                             ]),
+            //                         child: Padding(
+            //                           padding: const EdgeInsets.all(8.0),
+            //                           child: Row(
+            //                               mainAxisAlignment:
+            //                                   MainAxisAlignment.spaceBetween,
+            //                               children: const [
+            //                                 Text(
+            //                                   "Schemes",
+            //                                   style: TextStyle(
+            //                                       fontSize: 14,
+            //                                       fontWeight: FontWeight.bold,
+            //                                       color: Colors.black),
+            //                                 ),
+            //                                 Icon(Icons.arrow_forward_ios)
+            //                               ]),
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   Padding(
+            //                     padding: const EdgeInsets.all(8.0),
+            //                     child: Container(
+            //                       height: 50,
+            //                       decoration: BoxDecoration(
+            //                           border: Border.all(
+            //                               width: 1,
+            //                               color: Colors.grey.shade400),
+            //                           borderRadius: BorderRadius.circular(10),
+            //                           color: Colors.white,
+            //                           boxShadow: const <BoxShadow>[
+            //                             BoxShadow(
+            //                               color: Colors.grey,
+            //                               offset: Offset(1.0, 6.0),
+            //                               blurRadius: 10.0,
+            //                             ),
+            //                           ]),
+            //                       child: Padding(
+            //                         padding: const EdgeInsets.all(8.0),
+            //                         child: InkWell(
+            //                           onTap: () {
+            //                             Navigator.pushNamed(
+            //                                 context, My_Routes.dealerRewards);
+            //                           },
+            //                           child: Row(
+            //                               mainAxisAlignment:
+            //                                   MainAxisAlignment.spaceBetween,
+            //                               children: const [
+            //                                 Text(
+            //                                   "Rewords",
+            //                                   style: TextStyle(
+            //                                       fontSize: 14,
+            //                                       fontWeight: FontWeight.bold,
+            //                                       color: Colors.black),
+            //                                 ),
+            //                                 Icon(Icons.arrow_forward_ios)
+            //                               ]),
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 ]),
+            //           ),
+            //         )
+            //       : Padding(
+            //           padding: const EdgeInsets.all(8.0),
+            //           child: Card(
+            //             child: Column(
+            //                 mainAxisAlignment: MainAxisAlignment.start,
+            //                 crossAxisAlignment: CrossAxisAlignment.start,
+            //                 children: [
+            //                   const Padding(
+            //                     padding: EdgeInsets.all(15.0),
+            //                     child: Text(
+            //                       "Personalization",
+            //                       style: TextStyle(
+            //                           fontSize: 23,
+            //                           fontWeight: FontWeight.bold,
+            //                           color: Colors.black),
+            //                     ),
+            //                   ),
+            //                   Padding(
+            //                     padding: const EdgeInsets.all(8.0),
+            //                     child: InkWell(
+            //                       onTap: () {
+            //                         Navigator.push(
+            //                           context,
+            //                           MaterialPageRoute(
+            //                               builder: (context) => const Qr()),
+            //                         );
+            //                       },
+            //                       child: Container(
+            //                         height: 50,
+            //                         decoration: BoxDecoration(
+            //                             border: Border.all(
+            //                                 width: 1,
+            //                                 color: Colors.grey.shade400),
+            //                             borderRadius: BorderRadius.circular(10),
+            //                             color: Colors.white,
+            //                             boxShadow: const <BoxShadow>[
+            //                               BoxShadow(
+            //                                 color: Colors.grey,
+            //                                 offset: Offset(1.0, 6.0),
+            //                                 blurRadius: 10.0,
+            //                               ),
+            //                             ]),
+            //                         child: Padding(
+            //                           padding: const EdgeInsets.all(8.0),
+            //                           child: Row(
+            //                               mainAxisAlignment:
+            //                                   MainAxisAlignment.spaceBetween,
+            //                               children: const [
+            //                                 Text(
+            //                                   "Generate Warrant Card",
+            //                                   style: TextStyle(
+            //                                       fontSize: 14,
+            //                                       fontWeight: FontWeight.bold,
+            //                                       color: Colors.black),
+            //                                 ),
+            //                                 Icon(Icons.arrow_forward_ios)
+            //                               ]),
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   Padding(
+            //                     padding: const EdgeInsets.all(8.0),
+            //                     child: InkWell(
+            //                       onTap: (() {
+            //                         Navigator.pushNamed(
+            //                             context, My_Routes.warranypage);
+            //                       }),
+            //                       child: Container(
+            //                         height: 50,
+            //                         decoration: BoxDecoration(
+            //                             border: Border.all(
+            //                                 width: 1,
+            //                                 color: Colors.grey.shade400),
+            //                             borderRadius: BorderRadius.circular(10),
+            //                             color: Colors.white,
+            //                             boxShadow: const <BoxShadow>[
+            //                               BoxShadow(
+            //                                 color: Colors.grey,
+            //                                 offset: Offset(1.0, 6.0),
+            //                                 blurRadius: 10.0,
+            //                               ),
+            //                             ]),
+            //                         child: Padding(
+            //                           padding: const EdgeInsets.all(8.0),
+            //                           child: Row(
+            //                               mainAxisAlignment:
+            //                                   MainAxisAlignment.spaceBetween,
+            //                               children: const [
+            //                                 Text(
+            //                                   "Warranty Cards",
+            //                                   style: TextStyle(
+            //                                       fontSize: 14,
+            //                                       fontWeight: FontWeight.bold,
+            //                                       color: Colors.black),
+            //                                 ),
+            //                                 Icon(Icons.arrow_forward_ios)
+            //                               ]),
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   Padding(
+            //                     padding: const EdgeInsets.all(8.0),
+            //                     child: Container(
+            //                       height: 50,
+            //                       decoration: BoxDecoration(
+            //                           border: Border.all(
+            //                               width: 1,
+            //                               color: Colors.grey.shade400),
+            //                           borderRadius: BorderRadius.circular(10),
+            //                           color: Colors.white,
+            //                           boxShadow: const <BoxShadow>[
+            //                             BoxShadow(
+            //                               color: Colors.grey,
+            //                               offset: Offset(1.0, 6.0),
+            //                               blurRadius: 10.0,
+            //                             ),
+            //                           ]),
+            //                       child: Padding(
+            //                         padding: const EdgeInsets.all(8.0),
+            //                         child: InkWell(
+            //                           onTap: () {
+            //                             Navigator.push(
+            //                               context,
+            //                               MaterialPageRoute(
+            //                                   builder: (context) =>
+            //                                       DistributerNav(
+            //                                         selectedIndex: 2,
+            //                                       )),
+            //                             );
+            //                           },
+            //                           child: Row(
+            //                               mainAxisAlignment:
+            //                                   MainAxisAlignment.spaceBetween,
+            //                               children: const [
+            //                                 Text(
+            //                                   "Orders",
+            //                                   style: TextStyle(
+            //                                       fontSize: 14,
+            //                                       fontWeight: FontWeight.bold,
+            //                                       color: Colors.black),
+            //                                 ),
+            //                                 Icon(Icons.arrow_forward_ios)
+            //                               ]),
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 ]),
+            //           ),
+            //         ),
 
             const SizedBox(
               height: 10,

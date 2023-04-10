@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'dart:math';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:vinayakply/const/constant.dart';
 import 'package:vinayakply/util/blog.dart';
 
-String mainbaseUrl = "${baseurl}";
+String mainbaseUrl = baseurl;
 String imageurl = "${baseurl}product/";
 
 class DistubuterApi {
@@ -123,12 +123,14 @@ class DistubuterApi {
 
   Future<dynamic> getwarantyDetail() async {
     var client = http.Client();
+
     try {
       final response = await client.post(
         body: {"userid": userCred.getUserId()},
         Uri.parse("${mainbaseUrl}showqr.php"),
       );
       if (response.statusCode == 200) {
+        log("${mainbaseUrl}showqr.php");
         print(response.body);
         return jsonDecode(response.body) as List;
       } else {
@@ -244,10 +246,10 @@ class DistubuterApi {
           "mobile_no": mobile_no,
           "street_address": street_address,
           "state": state,
-          "mobile": mobile_no,
-          "address": street_address,
-          "state": state,
-          "userdi": userCred.getUserId()
+
+          // "address": street_address,
+
+          "userid": userCred.getUserId(),
           // "city": city
         },
         Uri.parse("${mainbaseUrl}generatecard.php"),
@@ -293,7 +295,7 @@ class DistubuterApi {
     }
   }
 
-  Future<dynamic> genratewaranty({String? serial_no}) async {
+  Future<dynamic> genratewaranty({required String serial_no}) async {
     var client = http.Client();
     try {
       final response = await client.post(
@@ -307,6 +309,79 @@ class DistubuterApi {
       if (response.statusCode == 200) {
         print(response.body);
         return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+        throw "Somethiing went wrong";
+      }
+    } catch (e) {
+      print(e);
+      throw "Somethiing went wrong";
+    } finally {
+      client.close();
+    }
+  }
+
+  Future<dynamic> addpoinapi({required String serial_no}) async {
+    var client = http.Client();
+    try {
+      final response = await client.post(
+        body: {
+          "userid": userCred.getUserId(),
+          "qrcode": serial_no,
+        },
+        //${baseurl}
+        Uri.parse("${mainbaseUrl}addpoint.php"),
+      );
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+        throw "Somethiing went wrong";
+      }
+    } catch (e) {
+      print(e);
+      throw "Somethiing went wrong";
+    } finally {
+      client.close();
+    }
+  }
+
+  Future<dynamic> getpoin() async {
+    var client = http.Client();
+    try {
+      final response = await client.post(
+        body: {
+          "userid": userCred.getUserId(),
+        },
+        //${baseurl}
+        Uri.parse("${mainbaseUrl}points.php"),
+      );
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body) as List;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+        throw "Somethiing went wrong";
+      }
+    } catch (e) {
+      print(e);
+      throw "Somethiing went wrong";
+    } finally {
+      client.close();
+    }
+  }
+
+  Future<dynamic> getSlider() async {
+    var client = http.Client();
+    try {
+      final response = await client.post(
+        //${baseurl}
+        Uri.parse("${mainbaseUrl}slider.php"),
+      );
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body) as List;
       } else {
         print('Request failed with status: ${response.statusCode}.');
         throw "Somethiing went wrong";

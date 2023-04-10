@@ -65,7 +65,9 @@ class VinayakPly extends StatelessWidget {
         My_Routes.dashboardinterior: (context) =>
             const InteriorInteriorDashboard(),
         My_Routes.dealerDashboard: (context) => const Dashboard(),
-        My_Routes.dealerScheme: (context) => const Schemes(),
+        My_Routes.dealerScheme: (context) => Schemes(
+              ispage: true,
+            ),
         My_Routes.dealerRewards: (context) => const Rewards(),
         My_Routes.dealerMore: (context) => const More(),
         My_Routes.aboutUs: (context) => const AboutUs(),

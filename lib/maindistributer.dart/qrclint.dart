@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -9,14 +10,14 @@ import '../routes.dart';
 
 Barcode? result;
 
-class Qr extends StatefulWidget {
-  const Qr({Key? key}) : super(key: key);
+class QrClint extends StatefulWidget {
+  const QrClint({Key? key}) : super(key: key);
 
   @override
-  State<Qr> createState() => _QrState();
+  State<QrClint> createState() => _QrClintState();
 }
 
-class _QrState extends State<Qr> {
+class _QrClintState extends State<QrClint> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   QRViewController? controller;
@@ -175,13 +176,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () async {
                           DistubuterApi distubuterApi = DistubuterApi();
                           try {
-                            Map data = await distubuterApi.genratewaranty(
+                            Map data = await distubuterApi.addpoinapi(
                                 serial_no: sirNoController.text);
                             print(data["status"].runtimeType);
 
                             if (data["success"].toString() == "1") {
-                              Navigator.pushNamed(
-                                  context, My_Routes.warranycardDetail);
+                              Navigator.pop(context);
                               setState(() {
                                 loading = false;
                               });
@@ -270,12 +270,20 @@ class _MyHomePageState extends State<MyHomePage> {
   qrapi(res) async {
     DistubuterApi distubuterApi = DistubuterApi();
     try {
-      Map data = await distubuterApi.genratewaranty(serial_no: res);
+      Map data = await distubuterApi.addpoinapi(serial_no: res);
       print(data["status"].runtimeType);
 
       if (data["success"].toString() == "1") {
+        log("mc");
         // Navigator.pop(context);
-
+        Fluttertoast.showToast(
+            msg: " ${data['message']}! ",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
         Future.delayed(const Duration(seconds: 0), () {
           Navigator.pushNamed(context, My_Routes.warranycardDetail);
           // Navigator.pushReplacement(

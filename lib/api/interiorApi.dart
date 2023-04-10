@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:vinayakply/const/constant.dart';
@@ -74,36 +75,37 @@ class InteriorApi {
   Future<dynamic> UpdateProfileApi({
     String? email,
     name,
-    site_name,
-    project_type,
-    mobile,
+    // site_name,
+    // project_type,
+    // mobile,
     address,
     stateid,
-    shopname,
+    // shopname,
     cityid,
     anniversary,
-    user_alt_mobile_no,
+    // user_alt_mobile_no,
     gender,
-    merital_status,
+    // merital_status,
     dob,
   }) async {
     var client = http.Client();
     try {
+      log("hhhhhh${userCred.getUserId()}");
       final response = await client.post(
         body: {
           "userid": userCred.getUserId(),
           "name": name,
           "email": email,
-          "mobile": mobile,
+          // "mobile": mobile,
           "street_address": address,
-          "dob": dob,
-          "gender": gender,
-          "state_id": stateid,
-          "anniversary": anniversary,
-          "user_alt_mobile_no": user_alt_mobile_no,
-          "shopname": shopname,
-          "city_id": cityid,
-          "city_id": merital_status,
+          "dob": "5TT3",
+          "gender": "1",
+          "state_id": "3",
+          "anniversary": "VFFSBVF",
+          // "user_alt_mobile_no": user_alt_mobile_no,
+          // "shopname": shopname,
+          "city_id": "4",
+          // "city_id": merital_status,
         },
         Uri.parse("${baseurl}updateprofile.php"),
       );

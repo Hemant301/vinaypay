@@ -5,6 +5,7 @@ import 'package:vinayakply/maindistributer.dart/distbuterapi.dart';
 import 'package:vinayakply/maindistributer.dart/orderpage.dart';
 import 'package:vinayakply/routes.dart';
 import 'package:vinayakply/untitled%20folder/scanQr.dart';
+import 'package:vinayakply/util/blog.dart';
 
 import 'distributernavbar.dart';
 
@@ -66,15 +67,11 @@ class _DistributerHomeState extends State<DistributerHome> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const InkWell(
-                // onTap: () {
-                //   Navigator.of(context).push(MaterialPageRoute(
-                //       builder: (context) => MypDF(
-                //             title: "fdgfdgf",
-                //             platform: platform,
-                //           )));
-                // },
-                child: Text(
+              InkWell(
+                onTap: () {
+                  log(userCred.getUserType());
+                },
+                child: const Text(
                   "My Order",
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),

@@ -19,7 +19,9 @@ class _DealerHomeState extends State<DealerHome> {
   int pageIndex = 0;
   final pages = [
     const Dashboard(),
-    const Schemes(),
+    Schemes(
+      ispage: false,
+    ),
     const Rewards(),
     const InteriorProfile(),
   ];
@@ -32,16 +34,16 @@ class _DealerHomeState extends State<DealerHome> {
         automaticallyImplyLeading: true,
         title: Image.asset('assets/logo2.png', height: 90, width: 160),
         centerTitle: false,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.notifications, color: Colors.white),
-            onPressed: () {},
-          )
-        ],
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: const Icon(Icons.search, color: Colors.white),
+        //     onPressed: () {},
+        //   ),
+        //   IconButton(
+        //     icon: const Icon(Icons.notifications, color: Colors.white),
+        //     onPressed: () {},
+        //   )
+        // ],
       ),
       body: pages[pageIndex],
     );

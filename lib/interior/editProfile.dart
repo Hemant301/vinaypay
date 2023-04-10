@@ -361,19 +361,21 @@ class _EditProflieState extends State<EditProflie> {
                       });
 
                       InteriorApi interiorApi = InteriorApi();
+                      log("hemant");
                       try {
                         Map data = await interiorApi.UpdateProfileApi(
-                          mobile: mobileController.text,
+                          // mobile: mobileController.text,
                           name: nameController.text,
                           email: emailController.text,
-                          user_alt_mobile_no: altMoblieController.text,
+                          gender: "1",
+                          // user_alt_mobile_no: altMoblieController.text,
                           dob: dobController.text,
-                          stateid: stateId ?? "",
-                          cityid: cityid ?? "",
-                          merital_status: maritalstatus ?? "",
+                          stateid: stateId,
+                          cityid: cityid,
+                          // merital_status: maritalstatus ?? "",
                           address: addressController.text,
                         );
-                        print(data["status"].runtimeType);
+                        log("${data["status"].runtimeType}hemant");
 
                         if (data["success"].toString() == "1") {
                           Navigator.pop(context);

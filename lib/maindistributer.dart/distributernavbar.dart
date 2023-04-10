@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:vinayakply/api/bloc/bloc.dart';
 import 'package:vinayakply/api/repo/modal.dart';
@@ -72,7 +73,6 @@ class _DistributerNavState extends State<DistributerNav> {
     // TODO: implement initState
     super.initState();
     homeBloc.fetchSlider();
-    ;
   }
 
   @override
@@ -91,9 +91,9 @@ class _DistributerNavState extends State<DistributerNav> {
                         padding: const EdgeInsets.all(18.0),
                         child: Center(
                           child: Badge(
-                            label:
+                            badgeContent:
                                 Text(snapshot.data!.products.length.toString()),
-                            child: Icon(
+                            child: const Icon(
                               Icons.shopping_cart,
                               color: Colors.white,
                               size: 28,

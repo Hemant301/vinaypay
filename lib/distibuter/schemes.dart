@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vinayakply/routes.dart';
 
 class Schemes extends StatefulWidget {
-  const Schemes({Key? key}) : super(key: key);
-
+  Schemes({Key? key, this.ispage = false}) : super(key: key);
+  bool? ispage;
   @override
   State<Schemes> createState() => _SchemesState();
 }
@@ -14,6 +14,13 @@ class _SchemesState extends State<Schemes> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: widget.ispage == true
+              ? InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(Icons.arrow_back))
+              : Container(),
           backgroundColor: Colors.red,
           title: const Text(
             "Schemes",
