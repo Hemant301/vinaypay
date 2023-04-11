@@ -85,6 +85,8 @@ class _ApplySchemeState extends State<ApplyScheme> {
               widget.data['offerid'], widget.data['points']);
           log(data.toString());
           if (data['successCode'].toString() == "1") {
+            Navigator.pop(context);
+            Fluttertoast.showToast(msg: data['message']);
           } else {
             Fluttertoast.showToast(msg: data['message']);
             return;
