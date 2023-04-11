@@ -773,9 +773,14 @@ class _RegistrationState extends State<Registration> {
                                             fontSize: 16.0);
 
                                         return;
-                                      } else if (mobileController.text == "") {
+                                      } else if (mobileController.text == "" ||
+                                          dateinput.text == "" ||
+                                          addresscontroler.text == "" ||
+                                          passwordController.text == "" ||
+                                          city == "" ||
+                                          state == "") {
                                         Fluttertoast.showToast(
-                                            msg: "Invalid phone number!!",
+                                            msg: "Enter all data",
                                             toastLength: Toast.LENGTH_SHORT,
                                             gravity: ToastGravity.BOTTOM,
                                             timeInSecForIosWeb: 1,
