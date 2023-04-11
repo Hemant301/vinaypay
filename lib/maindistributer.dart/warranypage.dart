@@ -24,7 +24,7 @@ class _WarratyPageState extends State<WarratyPage> {
       body: SingleChildScrollView(
         child: Column(
             children: List.generate(
-          5,
+          warantycardData.length,
           (index) => Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(

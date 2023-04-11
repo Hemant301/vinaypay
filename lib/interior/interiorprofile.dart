@@ -183,10 +183,7 @@ class _InteriorProfileState extends State<InteriorProfile> {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Qr()),
-                      );
+                      Navigator.pushNamed(context, My_Routes.warranycardDetail);
                     },
                     child: Container(
                       height: 50,
@@ -278,13 +275,14 @@ class _InteriorProfileState extends State<InteriorProfile> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DistributerNav(
-                                      selectedIndex: 2,
-                                    )),
-                          );
+                          Navigator.pushNamed(context, My_Routes.orderpage);
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => DistributerNav(
+                          //             selectedIndex: 2,
+                          //           )),
+                          // );
                         },
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -28,6 +28,12 @@ class _MyCardPageState extends State<MyCardPage> {
         setState(() {
           cardList = data['data'];
         });
+      } else if (data['status'].toString() == "0") {
+        if (data['response'].toString() == "No Record found") {
+          setState(() {
+            cardList.clear();
+          });
+        }
       }
 
       log("dfgdj$cardList");

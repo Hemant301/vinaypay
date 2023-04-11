@@ -250,7 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
         setState(() {
           result = scanData;
           controller.pauseCamera();
-          qrapi(result);
+          qrapi(result!.code);
         });
       } else {
         // showCustomSnackBar("Not a valid qr");

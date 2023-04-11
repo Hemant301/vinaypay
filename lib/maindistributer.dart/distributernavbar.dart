@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:badges/badges.dart';
+// import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:vinayakply/api/bloc/bloc.dart';
 import 'package:vinayakply/api/repo/modal.dart';
@@ -89,14 +89,19 @@ class _DistributerNavState extends State<DistributerNav> {
                       if (!snapshot.hasData) return Container();
                       return Padding(
                         padding: const EdgeInsets.all(18.0),
-                        child: Center(
-                          child: Badge(
-                            badgeContent:
-                                Text(snapshot.data!.products.length.toString()),
-                            child: const Icon(
-                              Icons.shopping_cart,
-                              color: Colors.white,
-                              size: 28,
+                        child: InkWell(
+                          onTap: () {
+                            _onItemTap(2);
+                          },
+                          child: Center(
+                            child: Badge(
+                              label: Text(
+                                  snapshot.data!.products.length.toString()),
+                              child: const Icon(
+                                Icons.shopping_cart,
+                                color: Colors.white,
+                                size: 28,
+                              ),
                             ),
                           ),
                         ),

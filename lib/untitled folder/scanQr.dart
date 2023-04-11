@@ -180,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             print(data["status"].runtimeType);
 
                             if (data["success"].toString() == "1") {
-                              Navigator.pushNamed(
+                              Navigator.pushReplacementNamed(
                                   context, My_Routes.warranycardDetail);
                               setState(() {
                                 loading = false;
@@ -250,7 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
         setState(() {
           result = scanData;
           controller.pauseCamera();
-          qrapi(result);
+          qrapi(result!.code);
         });
       } else {
         // showCustomSnackBar("Not a valid qr");
@@ -277,7 +277,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // Navigator.pop(context);
 
         Future.delayed(const Duration(seconds: 0), () {
-          Navigator.pushNamed(context, My_Routes.warranycardDetail);
+          Navigator.pushReplacementNamed(context, My_Routes.warranycardDetail);
           // Navigator.pushReplacement(
           //   context,
           //   MaterialPageRoute(

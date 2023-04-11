@@ -461,6 +461,10 @@ class _FreshLoginState extends State<FreshLogin> {
                                       log(data.toString());
 
                                       if (data["success"].toString() == "1") {
+                                        userCred.setSchool(
+                                            data['total_point'].toString());
+                                        userCred.setStateId(
+                                            data['state_id'].toString());
                                         userCred.addUserId(
                                             data["userid"].toString());
                                         userCred.addMob(

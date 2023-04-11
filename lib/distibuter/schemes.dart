@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:vinayakply/api/registerapi.dart';
+import 'package:vinayakply/distibuter/applyScheme.dart';
 import 'package:vinayakply/routes.dart';
 
 class Schemes extends StatefulWidget {
@@ -9,6 +13,23 @@ class Schemes extends StatefulWidget {
 }
 
 class _SchemesState extends State<Schemes> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    List data = await registerApi.schemeApi();
+    log(data.toString());
+    setState(() {
+      schemeData = data;
+    });
+  }
+
+  List schemeData = [];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,7 +53,7 @@ class _SchemesState extends State<Schemes> {
             children: [
               ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 5,
+                  itemCount: schemeData.length,
                   physics: const PageScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return Wrap(
@@ -56,8 +77,8 @@ class _SchemesState extends State<Schemes> {
                                             BorderSide(
                                                 width: 1.0,
                                                 color: Colors.black12))),
-                                    child: Image.asset(
-                                      "assets/ply1.png",
+                                    child: Image.network(
+                                      "https://knowledgeitservices.in/vinayakply/scheamimage/${schemeData[index]['picture']}",
                                       height: 130,
                                       width: 86,
                                     )),
@@ -71,13 +92,13 @@ class _SchemesState extends State<Schemes> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text(
-                                        "Vinayak Plywood",
+                                      Text(
+                                        schemeData[index]['prize_name'],
                                         style: TextStyle(
                                             fontSize: 14, color: Colors.black),
                                       ),
-                                      const Text(
-                                        "Schem Launched on 2022-09-10",
+                                      Text(
+                                        "Schem Launched on ${schemeData[index]['offer_start_date']}",
                                         style: TextStyle(
                                             fontSize: 12,
                                             color: Colors.black54),
@@ -85,8 +106,8 @@ class _SchemesState extends State<Schemes> {
                                       const SizedBox(
                                         height: 10,
                                       ),
-                                      const Text(
-                                        "Buy any Vinayak Products and scan to get rewards points,Buy any Vinayak Products and scan to get rewards points",
+                                      Text(
+                                        "${schemeData[index]['short_detail']}",
                                         style: TextStyle(
                                             fontSize: 10,
                                             color: Colors.black45),
@@ -100,11 +121,18 @@ class _SchemesState extends State<Schemes> {
                                             width: 122,
                                             child: OutlinedButton(
                                               onPressed: () {
-                                                Navigator.pushNamed(context,
-                                                    My_Routes.dealerRewards);
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ApplyScheme(
+                                                            data: schemeData[
+                                                                index],
+                                                          )),
+                                                );
                                               },
-                                              child: const Text(
-                                                'Scheme Points 125 points',
+                                              child: Text(
+                                                'Scheme Points ${schemeData[index]['points']} points',
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 12),
@@ -114,7 +142,7 @@ class _SchemesState extends State<Schemes> {
                                           TextButton(
                                               onPressed: () {},
                                               child: Column(
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     'Offer ends',
                                                     style: TextStyle(
@@ -122,7 +150,7 @@ class _SchemesState extends State<Schemes> {
                                                         fontSize: 12),
                                                   ),
                                                   Text(
-                                                    '2023-02-08',
+                                                    '${schemeData[index]['offer_end_date']}',
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 12),

@@ -257,6 +257,8 @@ class _WarranyCardDetailsState extends State<WarranyCardDetails> {
           Textfiless(
             controller: mobileController,
             title: "Enter Mobile Number",
+            keyboardType: TextInputType.number,
+            maxLength: 10,
           ),
           Textfiless(
             controller: nameController,
@@ -269,6 +271,8 @@ class _WarranyCardDetailsState extends State<WarranyCardDetails> {
           Textfiless(
             controller: pincodeController,
             title: "Enter PinCode",
+            keyboardType: TextInputType.number,
+            maxLength: 6,
           ),
           // Textfiless(
           //   controller: serialController,
@@ -460,7 +464,7 @@ class _WarranyCardDetailsState extends State<WarranyCardDetails> {
                         print(data["status"].runtimeType);
 
                         if (data["success"].toString() == "1") {
-                          Navigator.pushNamed(context, "/");
+                          Navigator.pop(context);
                           //  userCred.addUserId(data["user"]["_id"]);
                           setState(() {
                             loading = false;
@@ -470,7 +474,7 @@ class _WarranyCardDetailsState extends State<WarranyCardDetails> {
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
+                              backgroundColor: Colors.green,
                               textColor: Colors.white,
                               fontSize: 16.0);
                           setState(() {

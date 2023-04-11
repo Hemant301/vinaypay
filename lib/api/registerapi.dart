@@ -197,6 +197,50 @@ class RegisterApi {
     }
   }
 
+  Future<dynamic> schemeApi() async {
+    var client = http.Client();
+    try {
+      final response = await client.post(Uri.parse("${baseurl}all_scheam.php"),
+          body: {"state_id": userCred.getStateId()});
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+        throw "Somethiing went wrong";
+      }
+    } catch (e) {
+      print(e);
+      throw "Somethiing went wrong";
+    } finally {
+      client.close();
+    }
+  }
+
+  Future<dynamic> applyonScheme(String offerid, scPoint) async {
+    var client = http.Client();
+    try {
+      final response = await client
+          .post(Uri.parse("${baseurl}participate_scheam.php"), body: {
+        "userid": userCred.getUserId(),
+        "offerid": offerid,
+        "scheam_point": scPoint
+      });
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+        throw "Somethiing went wrong";
+      }
+    } catch (e) {
+      print(e);
+      throw "Somethiing went wrong";
+    } finally {
+      client.close();
+    }
+  }
+
   Future<dynamic> signUpApi({
     String name = "",
     String usertype = "",
@@ -266,3 +310,5 @@ class RegisterApi {
     }
   }
 }
+
+final registerApi = RegisterApi();

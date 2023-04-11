@@ -24,6 +24,7 @@ class _EarnPointState extends State<EarnPoint> {
       setState(() {
         pointlist = data;
       });
+      pointCal();
 
       log("dfgdj$pointlist");
     } catch (e) {
@@ -38,6 +39,22 @@ class _EarnPointState extends State<EarnPoint> {
       }
     }
   }
+
+  pointCal() {
+    double inPoints = 0;
+    double outPoints = 0;
+    for (var i = 0; i < pointlist.length; i++) {
+      if (pointlist[i]['transaction_type'] == "IN") {
+        inPoints = inPoints + double.parse(pointlist[i]['point']);
+      } else {
+        outPoints = outPoints + double.parse(pointlist[i]['point']);
+      }
+
+      totalPoints = inPoints - outPoints;
+    }
+  }
+
+  double totalPoints = 0;
 
   @override
   void initState() {
@@ -69,6 +86,19 @@ class _EarnPointState extends State<EarnPoint> {
           //     ),
           //   ),
           // ),
+
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                "Total Points - ${totalPoints.toInt()}",
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -137,12 +167,15 @@ class _EarnPointState extends State<EarnPoint> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                              pointlist[index]['barcode'].toString(),
-                              style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 50,
+                              child: Text(
+                                pointlist[index]['barcode'].toString(),
+                                style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12),
+                              ),
                             ),
                             // Text(
                             //   'Add More',

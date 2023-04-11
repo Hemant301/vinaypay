@@ -10,15 +10,13 @@ class HomeApi {
   var client = http.Client();
   Future<dynamic> fetchCart() async {
     try {
-      final response =
-          await client.post(Uri.parse("${mainbaseUrl}showCart.php"),
-          
-          body: {
+      final response = await client.post(
+        Uri.parse("${mainbaseUrl}showCart.php"),
+        body: {
           "user_id": userCred.getUserId(),
         },
-          );
+      );
       if (response.statusCode == 200) {
-      
         print(response.body);
         return response;
       } else {

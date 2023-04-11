@@ -1,9 +1,16 @@
 class CartModal {
+  dynamic status;
   List<CartProductModal> products = [];
 
   CartModal(js) {
-    for (var i = 0; i < js['data'].length; i++) {
-      products.add(CartProductModal(js['data'][i]));
+    status = js['status'] ?? "";
+
+    if (status.toString() == "0") {
+      products.clear();
+    } else {
+      for (var i = 0; i < js['data'].length; i++) {
+        products.add(CartProductModal(js['data'][i]));
+      }
     }
   }
 }

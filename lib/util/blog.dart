@@ -46,6 +46,16 @@ class UserCred {
     return isActive;
   }
 
+  String getSchool() {
+    String isActive = StorageUtil.getString('INFO');
+    return isActive;
+  }
+
+  String getStateId() {
+    String isActive = StorageUtil.getString('stateId');
+    return isActive;
+  }
+
   String getMob() {
     String isActive = StorageUtil.getString('MOB');
     return isActive;
@@ -101,6 +111,10 @@ class UserCred {
 
   void setSchool(String info) {
     StorageUtil.putString('INFO', info);
+  }
+
+  void setStateId(String info) {
+    StorageUtil.putString('stateId', info);
   }
 
   void setCategory(String info) {
