@@ -81,6 +81,13 @@ class _ApplySchemeState extends State<ApplyScheme> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: InkWell(
         onTap: () async {
+          DateTime dt1 =
+              DateTime.parse("${widget.data['offer_end_date']} 11:47:00");
+          DateTime dt2 = DateTime.now();
+          if (dt1.compareTo(dt2) < 0) {
+            Fluttertoast.showToast(msg: "Scheme Expired");
+            return;
+          }
           Map data = await registerApi.applyonScheme(
               widget.data['offerid'], widget.data['points']);
           log(data.toString());
