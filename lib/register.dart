@@ -750,20 +750,18 @@ class _RegistrationState extends State<Registration> {
                                             fontSize: 16.0);
 
                                         return;
-                                      }
-                                      // else if (nameController.text == "") {
-                                      //   Fluttertoast.showToast(
-                                      //       msg: "Invalid name!",
-                                      //       toastLength: Toast.LENGTH_SHORT,
-                                      //       gravity: ToastGravity.BOTTOM,
-                                      //       timeInSecForIosWeb: 1,
-                                      //       backgroundColor: Colors.red,
-                                      //       textColor: Colors.white,
-                                      //       fontSize: 16.0);
+                                      } else if (nameController.text == "") {
+                                        Fluttertoast.showToast(
+                                            msg: "Invalid name!",
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.BOTTOM,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor: Colors.red,
+                                            textColor: Colors.white,
+                                            fontSize: 16.0);
 
-                                      //   return;
-                                      // }
-                                      else if (emailController.text == "") {
+                                        return;
+                                      } else if (emailController.text == "") {
                                         Fluttertoast.showToast(
                                             msg: "Invalid email!!",
                                             toastLength: Toast.LENGTH_SHORT,
@@ -775,6 +773,17 @@ class _RegistrationState extends State<Registration> {
 
                                         return;
                                       } else if (mobileController.text == "") {
+                                        Fluttertoast.showToast(
+                                            msg: "Invalid phone number!!",
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.BOTTOM,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor: Colors.red,
+                                            textColor: Colors.white,
+                                            fontSize: 16.0);
+
+                                        return;
+                                      }else if (.text == "") {
                                         Fluttertoast.showToast(
                                             msg: "Invalid phone number!!",
                                             toastLength: Toast.LENGTH_SHORT,
