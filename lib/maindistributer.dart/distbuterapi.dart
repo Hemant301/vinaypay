@@ -12,6 +12,7 @@ class DistubuterApi {
   var client = http.Client();
 
   Future<dynamic> getAllOrder() async {
+    print("userid ${userCred.getUserId()}");
     var client = http.Client();
     try {
       final response = await client.post(
@@ -103,12 +104,34 @@ class DistubuterApi {
     var client = http.Client();
     try {
       final response = await client.post(
-        body: {"warranty_number": search},
+        body: {"searchkeyword": search},
         Uri.parse("${mainbaseUrl}product.php"),
       );
       if (response.statusCode == 200) {
         print(response.body);
         return jsonDecode(response.body) as List;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+        throw "Somethiing went wrong";
+      }
+    } catch (e) {
+      print(e);
+      throw "Somethiing went wrong";
+    } finally {
+      client.close();
+    }
+  }
+
+  Future<dynamic> cancelOrder(String id) async {
+    var client = http.Client();
+    try {
+      final response = await client.post(
+        body: {"orderid": id},
+        Uri.parse("${mainbaseUrl}ordercancel.php"),
+      );
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body) as Map;
       } else {
         print('Request failed with status: ${response.statusCode}.');
         throw "Somethiing went wrong";

@@ -190,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   toastLength: Toast.LENGTH_SHORT,
                                   gravity: ToastGravity.BOTTOM,
                                   timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.red,
+                                  backgroundColor: Colors.green,
                                   textColor: Colors.white,
                                   fontSize: 16.0);
                               setState(() {
@@ -274,26 +274,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print(data["status"].runtimeType);
 
       if (data["success"].toString() == "1") {
-        log("mc");
-        // Navigator.pop(context);
-        Fluttertoast.showToast(
-            msg: " ${data['message']}! ",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
-        Future.delayed(const Duration(seconds: 0), () {
-          Navigator.pushNamed(context, My_Routes.warranycardDetail);
-          // Navigator.pushReplacement(
-          //   context,
-          //   MaterialPageRoute(
-          //       builder: (context) => QrResponse(
-          //             data: result.code,
-          //           )),
-          // );
-        });
+        Navigator.pop(context);
         setState(() {
           loading = false;
         });
@@ -302,12 +283,12 @@ class _MyHomePageState extends State<MyHomePage> {
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.green,
             textColor: Colors.white,
             fontSize: 16.0);
-        // setState(() {
-        //   // loading = false;
-        // });
+        setState(() {
+          loading = false;
+        });
       } else {
         setState(() {
           loading = false;
@@ -320,9 +301,9 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: Colors.red,
             textColor: Colors.white,
             fontSize: 16.0);
-        // setState(() {
-        //   loading = false;
-        // });
+        setState(() {
+          loading = false;
+        });
       }
     } catch (e) {}
   }

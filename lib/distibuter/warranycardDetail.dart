@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:vinayakply/util/blog.dart';
 
 import '../api/registerapi.dart';
 import '../maindistributer.dart/distbuterapi.dart';
@@ -185,11 +186,13 @@ class _WarranyCardDetailsState extends State<WarranyCardDetails> {
                         children: [
                           InkWell(
                             onTap: () async {
+                              print("userid ${userCred.getUserId()}");
+
                               DistubuterApi distubuterApi = DistubuterApi();
                               try {
                                 Map data =
                                     await distubuterApi.removeWarrantyCard(
-                                        qrid: waranty_data[index]['my_qr']
+                                        qrid: waranty_data[index]['id']
                                             .toString());
                                 print(data["status"].runtimeType);
 

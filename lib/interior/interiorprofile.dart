@@ -205,7 +205,7 @@ class _InteriorProfileState extends State<InteriorProfile> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
                               Text(
-                                "Generate Warrant Card",
+                                "Generate Warranty Card",
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,

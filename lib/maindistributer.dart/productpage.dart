@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vinayakply/api/bloc/bloc.dart';
 import 'package:vinayakply/maindistributer.dart/distbuterapi.dart';
+import 'package:vinayakply/maindistributer.dart/distributernavbar.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -41,6 +42,17 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: InkWell(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DistributerNav(
+                          selectedIndex: 0,
+                        )),
+              );
+            },
+            child: Icon(Icons.arrow_back)),
         backgroundColor: Colors.red,
         title: const Text(
           "Product",
@@ -63,7 +75,13 @@ class _ProductPageState extends State<ProductPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextField(
                       controller: searchController,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        if (value.length > 2) {
+                          getProductList(value);
+                        } else if (value.length == 0) {
+                          getProductList("");
+                        }
+                      },
                       decoration: const InputDecoration(
                           counterText: "",
                           hintText: "Search",
@@ -74,7 +92,6 @@ class _ProductPageState extends State<ProductPage> {
                   )),
               InkWell(
                 onTap: (() {
-                  productlist.clear();
                   setState(() {
                     getProductList(searchController.text);
                   });

@@ -171,7 +171,10 @@ class _MyCardPageState extends State<MyCardPage> {
                         log(data.toString());
                         if (data['status'].toString() == "1") {
                           positiveToast(data['response']);
-                          setState(() {});
+                          setState(() {
+                            getCard();
+                            homeBloc.fetchSlider();
+                          });
 
                           // homebloc.fetchuserDetails();
                         } else {

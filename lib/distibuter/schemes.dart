@@ -77,10 +77,16 @@ class _SchemesState extends State<Schemes> {
                                             BorderSide(
                                                 width: 1.0,
                                                 color: Colors.black12))),
-                                    child: Image.network(
-                                      "https://knowledgeitservices.in/vinayakply/scheamimage/${schemeData[index]['picture']}",
-                                      height: 130,
-                                      width: 86,
+                                    child: InkWell(
+                                      onTap: () {
+                                        print(
+                                            "https://knowledgeitservices.in/vinayakply/scheamimage/${schemeData[index]['picture']}");
+                                      },
+                                      child: Image.network(
+                                        "https://knowledgeitservices.in/vinayakply/scheamimage/${schemeData[index]['picture']}",
+                                        height: 130,
+                                        width: 86,
+                                      ),
                                     )),
                                 onTap: () {},
                               ),

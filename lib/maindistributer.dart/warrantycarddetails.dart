@@ -292,7 +292,7 @@ class _WarrancycardDetailsState extends State<WarrancycardDetails> {
             const Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                "View",
+                "All Items - ",
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
