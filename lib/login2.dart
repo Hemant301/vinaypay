@@ -158,124 +158,6 @@ class _FreshLoginState extends State<FreshLogin> {
                                       });
                                       print(data["successCode"].runtimeType);
 
-                                      // if (data["user_status"].toString() ==
-                                      //     "0") {
-                                      //   //  userCred.addUserId(data["user"]);
-                                      //   setState(() {
-                                      //     accData = accData;
-                                      //     loading = false;
-                                      //   });
-                                      //   Fluttertoast.showToast(
-                                      //       msg: " ${data['message']}! ",
-                                      //       toastLength: Toast.LENGTH_SHORT,
-                                      //       gravity: ToastGravity.BOTTOM,
-                                      //       timeInSecForIosWeb: 1,
-                                      //       backgroundColor: Colors.red,
-                                      //       textColor: Colors.white,
-                                      //       fontSize: 16.0);
-
-                                      //   if (data["user_status"].toString() ==
-                                      //       "0") {
-                                      //     if (data["successCode"] == "1") {
-                                      //       if (data["user_status"] == "0") {}
-                                      //       // verify otp
-
-                                      //       if (data["successCode"]
-                                      //               .toString() ==
-                                      //           "0") {
-                                      //         Future.delayed(
-                                      //             const Duration(seconds: 0),
-                                      //             () {
-                                      //           Navigator.pushNamed(context,
-                                      //               My_Routes.otpverifyRoute,
-                                      //               arguments: {
-                                      //                 "userid": data["userid"],
-                                      //                 "get_otp": data["OTP"]
-                                      //                     .toString(),
-                                      //                 "mobile":
-                                      //                     mobileController.text
-                                      //               });
-                                      //         });
-                                      //         Fluttertoast.showToast(
-                                      //             msg: " ${data['message']}! ",
-                                      //             toastLength:
-                                      //                 Toast.LENGTH_SHORT,
-                                      //             gravity: ToastGravity.BOTTOM,
-                                      //             timeInSecForIosWeb: 1,
-                                      //             backgroundColor: Colors.red,
-                                      //             textColor: Colors.white,
-                                      //             fontSize: 16.0);
-                                      //         setState(() {
-                                      //           loading = false;
-                                      //         });
-
-                                      //         // verify otp
-                                      //       } else {
-                                      //         // verify dialog
-                                      //         veryFyPopUP(context);
-                                      //         Fluttertoast.showToast(
-                                      //             msg: " ${data['message']}! ",
-                                      //             toastLength:
-                                      //                 Toast.LENGTH_SHORT,
-                                      //             gravity: ToastGravity.BOTTOM,
-                                      //             timeInSecForIosWeb: 1,
-                                      //             backgroundColor: Colors.red,
-                                      //             textColor: Colors.white,
-                                      //             fontSize: 16.0);
-                                      //         setState(() {
-                                      //           loading = false;
-                                      //         });
-                                      //       }
-                                      //     } else if (data["user_status"] ==
-                                      //         "1") {
-                                      //       // user login
-
-                                      //       Fluttertoast.showToast(
-                                      //           msg: " ${data['message']}! ",
-                                      //           toastLength: Toast.LENGTH_SHORT,
-                                      //           gravity: ToastGravity.BOTTOM,
-                                      //           timeInSecForIosWeb: 1,
-                                      //           backgroundColor: Colors.red,
-                                      //           textColor: Colors.white,
-                                      //           fontSize: 16.0);
-                                      //       setState(() {
-                                      //         loading = false;
-                                      //         isShow = true;
-                                      //       });
-                                      //     } else if (data["user_status"] ==
-                                      //         "2") {
-                                      //       // block dialog
-                                      //       Fluttertoast.showToast(
-                                      //           msg: " ${data['message']}! ",
-                                      //           toastLength: Toast.LENGTH_SHORT,
-                                      //           gravity: ToastGravity.BOTTOM,
-                                      //           timeInSecForIosWeb: 1,
-                                      //           backgroundColor: Colors.red,
-                                      //           textColor: Colors.white,
-                                      //           fontSize: 16.0);
-                                      //       setState(() {
-                                      //         loading = false;
-                                      //         isShow = true;
-                                      //       });
-                                      //     }
-                                      //   }
-                                      // } else {
-                                      //   // setState(() {
-                                      //   //   loading = false;
-                                      //   // });
-                                      //   Fluttertoast.showToast(
-                                      //       msg: " ${data['message']}! ",
-                                      //       toastLength: Toast.LENGTH_SHORT,
-                                      //       gravity: ToastGravity.BOTTOM,
-                                      //       timeInSecForIosWeb: 1,
-                                      //       backgroundColor: Colors.red,
-                                      //       textColor: Colors.white,
-                                      //       fontSize: 16.0);
-                                      //   setState(() {
-                                      //     loading = false;
-                                      //   });
-                                      // }
-
                                       if (data["successCode"] == "1") {
                                         log(data.toString());
                                         if (data["user_status"] == "0") {
@@ -667,6 +549,7 @@ BlockedUser(context) {
   }
 
   showDialog(
+    barrierDismissible: false,
     context: context,
     builder: (_) => AlertDialog(
       backgroundColor: Colors.white,
