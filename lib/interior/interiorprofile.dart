@@ -4,10 +4,9 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:vinayakply/api/repo/api.dart';
 import 'package:vinayakply/routes.dart';
 
-import '../maindistributer.dart/distributernavbar.dart';
-import '../untitled folder/scanQr.dart';
 import '../util/blog.dart';
 import '../util/shearfunctions.dart';
 
@@ -315,6 +314,9 @@ class _InteriorProfileState extends State<InteriorProfile> {
     super.initState();
   }
 
+// getStateID() async {
+
+//   }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -408,17 +410,19 @@ class _InteriorProfileState extends State<InteriorProfile> {
                                     height: 60,
                                     width: 60,
                                     child: profileImage == null
-                                        ? const Icon(
-                                            Icons.person,
-                                            size: 72,
-                                            color: Colors.black26,
+                                        ? const Center(
+                                            child: Icon(
+                                              Icons.person,
+                                              size: 72,
+                                              color: Colors.black26,
+                                            ),
                                           )
                                         : Image.file(
                                             profileImage!,
                                             fit: BoxFit.cover,
                                           ),
                                   ),
-                                  const Icon(Icons.camera_alt)
+                                  // const Icon(Icons.camera_alt)
                                 ],
                               )),
                         ),
@@ -475,19 +479,34 @@ class _InteriorProfileState extends State<InteriorProfile> {
                       ),
                     ],
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.end,
-                  //   children: const [
-                  //     Text(
-                  //       "Delete Account",
-                  //       style: TextStyle(
-                  //           fontSize: 18,
-                  //           fontWeight: FontWeight.bold,
-                  //           color: Colors.red),
-                  //     ),
-                  //     Icon(Icons.delete, color: Colors.red)
-                  //   ],
-                  // ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                          try {
+                            HomeApi registerApi = HomeApi();
+                            Map data = await registerApi.deleteAccount();
+                            if (data['sucessCode'].toString() == "1") {
+                              Navigator.pushReplacementNamed(
+                                  context, My_Routes.login2);
+                            }
+                            // if(data)
+                          } catch (e) {
+                            print(e);
+                          }
+                        },
+                        child: const Text(
+                          "Delete Account",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red),
+                        ),
+                      ),
+                      const Icon(Icons.delete, color: Colors.red)
+                    ],
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
